@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Maxpay;
 
 use Maxpay\Lib\Component\ButtonBuilder;
