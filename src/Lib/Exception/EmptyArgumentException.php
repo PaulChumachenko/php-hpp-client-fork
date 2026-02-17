@@ -4,15 +4,8 @@ declare(strict_types=1);
 
 namespace Maxpay\Lib\Exception;
 
-/**
- * Class EmptyArgumentException
- * @package Maxpay\Lib\Exception
- */
 class EmptyArgumentException extends GeneralMaxpayException
 {
-    /**
-     * @param string $paramName
-     */
     public function __construct(string $paramName)
     {
         parent::__construct(

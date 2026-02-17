@@ -23,7 +23,8 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "4.0.1",
-        "phpstan/phpstan": "2.1.23"
+        "phpstan/phpstan": "2.1.23",
+        "phpunit/phpunit": "11.5.53"
     },
     "autoload": {
         "psr-4": { "Maxpay\\" : "src/" }

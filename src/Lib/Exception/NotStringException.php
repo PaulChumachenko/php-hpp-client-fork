@@ -4,15 +4,8 @@ declare(strict_types=1);
 
 namespace Maxpay\Lib\Exception;
 
-/**
- * Class NotStringException
- * @package Maxpay\Lib\Exception
- */
 class NotStringException extends GeneralMaxpayException
 {
-    /**
-     * @param string $paramName
-     */
     public function __construct(string $paramName)
     {
         parent::__construct(

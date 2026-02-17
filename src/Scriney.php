@@ -16,20 +16,13 @@ use Maxpay\Lib\Util\SignatureHelper;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
-/**
- * Class Scriney
- * @package Maxpay
- */
 class Scriney implements ScrineyInterface
 {
-    /** @var string */
-    private $hostBase;
+    private string $hostBase;
 
-    /** @var LoggerInterface */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /** @var IdentityInterface */
-    private $identity;
+    private IdentityInterface $identity;
 
     /**
      * @param string $publicKey Available in your Mportal
@@ -39,10 +32,10 @@ class Scriney implements ScrineyInterface
      * @throws GeneralMaxpayException
      */
     public function __construct(
-        $publicKey,
-        $privateKey,
-        LoggerInterface $logger = null,
-        $hostBase = 'https://hpp.maxpay.com/'
+        string $publicKey,
+        string $privateKey,
+        ?LoggerInterface $logger = null,
+        string $hostBase = 'https://hpp.maxpay.com/'
     ) {
         $this->logger = is_null($logger) ? new NullLogger() : $logger;
         $this->hostBase = $hostBase;
@@ -69,10 +62,7 @@ class Scriney implements ScrineyInterface
             throw new GeneralMaxpayException($ex->getMessage(), $ex);
         }
 
-        $this->logger->info(
-            'Scriney object successfully built',
-            []
-        );
+        $this->logger->info('Scriney object successfully built');
     }
 
     /**
