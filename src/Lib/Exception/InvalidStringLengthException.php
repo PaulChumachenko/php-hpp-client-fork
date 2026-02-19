@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Maxpay\Lib\Exception;
 
 class InvalidStringLengthException extends GeneralMaxpayException
