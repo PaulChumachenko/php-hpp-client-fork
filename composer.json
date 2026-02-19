@@ -1,11 +1,16 @@
 {
-    "name": "paulchumachenko/php-hpp-client-fork",
-    "description": "Maxpay PHP Library ForkPhp8",
+    "name": "maxpay/hpp-client",
+    "description": "Maxpay PHP Library",
+    "keywords": [
+        "maxpay",
+        "psp"
+    ],
+    "homepage": "https://maxpay.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "PaulCh",
-            "homepage": "https://github.com/paulchumachenko"
+            "name": "Maxpay team",
+            "homepage": "https://github.com/maxpay"
         }
     ],
     "require": {
