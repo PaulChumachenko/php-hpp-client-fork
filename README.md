@@ -30,7 +30,7 @@ composer require maxpay/hpp-client:^2.0
 Migrating from 2.x? See [UPGRADE-3.0.md](UPGRADE-3.0.md)
 
 
-## Getting Started
+# Getting Started
 You can sign up for a maxpay account at https://my.maxpay.com/
 
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/00-intro.md#autoloading)
