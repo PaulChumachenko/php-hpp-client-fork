@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Maxpay\Lib\Exception;
 
 /**
- * Class EmptyArgumentException
+ * Class NotNumericException
  * @package Maxpay\Lib\Exception
  */
-class EmptyArgumentException extends GeneralMaxpayException
+class NotNumericException extends GeneralMaxpayException
 {
     /**
      * @param string $paramName
@@ -16,7 +16,7 @@ class EmptyArgumentException extends GeneralMaxpayException
     public function __construct(string $paramName)
     {
         parent::__construct(
-            sprintf('Passed argument `%s` is empty', $paramName)
+            sprintf('Passed argument `%s` is not numeric expected int or float value', $paramName)
         );
     }
 }

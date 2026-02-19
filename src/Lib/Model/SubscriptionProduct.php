@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Maxpay\Lib\Model;
 
+/**
+ * Class SubscriptionProduct
+ * @package Maxpay\Lib\Model
+ */
 class SubscriptionProduct extends BaseProduct
 {
     /**
@@ -27,11 +31,11 @@ class SubscriptionProduct extends BaseProduct
         string $currency,
         int $subscriptionLength,
         string $subscriptionPeriod,
-        ?int $subscriptionBillingCycles = null,
-        ?float $subscriptionEndDate = null,
-        ?float $discount = null,
-        ?string $discountType = null,
-        ?string $productDescription = null
+        int $subscriptionBillingCycles = null,
+        float $subscriptionEndDate = null,
+        float $discount = null,
+        string $discountType = null,
+        string $productDescription = null
     ) {
         parent::__construct(
             self::TYPE_SUBSCRIPTION,

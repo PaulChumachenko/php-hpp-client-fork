@@ -11,21 +11,32 @@ use Maxpay\Lib\Util\Validator;
 use Maxpay\Lib\Util\ValidatorInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class BaseBuilder
+ * @package Maxpay\Lib\Component
+ */
 abstract class BaseBuilder
 {
     const CUSTOM_PARAM_PREFIX = 'custom_';
 
-    protected ?UserInfoInterface $userInfo = null;
+    /** @var UserInfoInterface|null */
+    protected $userInfo;
 
-    /** @var array<string, string>  */
-    protected array $customParams = [];
+    /** @var array */
+    protected $customParams = [];
 
-    protected ?string $productId = null;
+    /** @var string|null */
+    protected $productId;
 
-    private LoggerInterface $logger;
+    /** @var LoggerInterface */
+    private $logger;
 
-    private ValidatorInterface $validator;
+    /** @var ValidatorInterface */
+    private $validator;
 
+    /**
+     * @param LoggerInterface $logger
+     */
     public function __construct(LoggerInterface $logger)
     {
         $this->validator = new Validator();
@@ -50,7 +61,7 @@ abstract class BaseBuilder
      * Set custom params - params will be returned in callback
      * e.g. ['custom_some_param' => 'some value']
      *
-     * @param array<string, string> $params
+     * @param array $params
      * @return BaseBuilder
      * @throws GeneralMaxpayException
      */

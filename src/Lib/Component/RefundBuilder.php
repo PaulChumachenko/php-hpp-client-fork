@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Maxpay\Lib\Component;
 
+use Maxpay\Lib\Exception\GeneralMaxpayException;
 use Maxpay\Lib\Model\IdentityInterface;
 use Maxpay\Lib\Util\ClientInterface;
 use Maxpay\Lib\Util\CurlClient;
@@ -12,24 +13,43 @@ use Maxpay\Lib\Util\Validator;
 use Maxpay\Lib\Util\ValidatorInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class RefundBuilder
+ * @package Maxpay\Lib\Component
+ */
 class RefundBuilder extends BaseBuilder
 {
-    private string $action = 'api/extended_refund';
+    /** @var string */
+    private $action = 'api/extended_refund';
 
-    private IdentityInterface $identity;
+    /** @var IdentityInterface */
+    private $identity;
 
-    private ValidatorInterface $validator;
+    /** @var ValidatorInterface */
+    private $validator;
 
-    private LoggerInterface $logger;
+    /** @var LoggerInterface */
+    private $logger;
 
-    private string $baseHost;
+    /** @var string */
+    private $baseHost;
 
-    private string $transactionId;
+    /** @var string */
+    private $transactionId;
 
-    private ClientInterface $client;
+    /** @var ClientInterface */
+    private $client;
 
-    private SignatureHelper $signatureHelper;
+    /** @var SignatureHelper */
+    private $signatureHelper;
 
+    /**
+     * @param IdentityInterface $identity
+     * @param string $transactionId
+     * @param LoggerInterface $logger
+     * @param string $baseHost
+     * @throws GeneralMaxpayException
+     */
     public function __construct(
         IdentityInterface $identity,
         string $transactionId,
@@ -49,6 +69,12 @@ class RefundBuilder extends BaseBuilder
         $this->logger->info('Refund builder successfully initialized');
     }
 
+    /**
+     * @param float $amount
+     * @param string $currencyCode
+     * @return array
+     * @throws GeneralMaxpayException
+     */
     public function send(float $amount, string $currencyCode): array
     {
         $data = [

@@ -7,12 +7,23 @@ namespace Maxpay\Lib\Model;
 use Maxpay\Lib\Exception\GeneralMaxpayException;
 use Maxpay\Lib\Util\Validator;
 
+/**
+ * Class Identity
+ * @package Maxpay\Lib\Model
+ */
 class Identity implements IdentityInterface
 {
-    private string $publicKey;
+    /** @var string */
+    private $publicKey;
 
-    private string $privateKey;
+    /** @var string */
+    private $privateKey;
 
+    /**
+     * @param string $publicKey
+     * @param string $privateKey
+     * @throws GeneralMaxpayException
+     */
     public function __construct(string $publicKey, string $privateKey)
     {
         $validator = new Validator();
@@ -20,11 +31,17 @@ class Identity implements IdentityInterface
         $this->privateKey = $validator->validateString('privateKey', $privateKey);
     }
 
+    /**
+     * @return string
+     */
     public function getPublicKey(): string
     {
         return $this->publicKey;
     }
 
+    /**
+     * @return string
+     */
     public function getPrivateKey(): string
     {
         return $this->privateKey;

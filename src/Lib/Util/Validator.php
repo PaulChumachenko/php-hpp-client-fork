@@ -7,14 +7,28 @@ namespace Maxpay\Lib\Util;
 use Maxpay\Lib\Exception\EmptyArgumentException;
 use Maxpay\Lib\Exception\GeneralMaxpayException;
 use Maxpay\Lib\Exception\InvalidStringLengthException;
+use Maxpay\Lib\Exception\NotNumericException;
 
+/**
+ * Class Validator
+ * @package Maxpay\Lib\Util
+ */
 class Validator implements ValidatorInterface
 {
-    private string $encoding = 'utf-8';
+    /** @var string */
+    private $encoding = 'utf-8';
 
-    public function validateString(string $paramName, string $value, int $minLength = 1, ?int $maxLength = null): string
+    /**
+     * @param string $paramName
+     * @param string $value
+     * @param int $minLength
+     * @param int|null $maxLength
+     * @return string
+     * @throws GeneralMaxpayException
+     */
+    public function validateString(string $paramName, string $value, int $minLength = 1, int $maxLength = null): string
     {
-        if ('' === $value) {
+        if (empty($value) || (mb_strlen($value, $this->encoding) === 0)) {
             throw new EmptyArgumentException($paramName);
         }
         if (!is_null($maxLength)) {
@@ -26,8 +40,17 @@ class Validator implements ValidatorInterface
         return $value;
     }
 
-    public function validateFloat(string $paramName, float $value): float
+    /**
+     * @param string $paramName
+     * @param float|int $value
+     * @return float|int
+     * @throws GeneralMaxpayException
+     */
+    public function validateNumeric(string $paramName, $value)
     {
+        if (!is_int($value) && !is_float($value)) {
+            throw new NotNumericException($paramName);
+        }
         if ($value <= 0) {
             throw new GeneralMaxpayException($paramName . 'must be greater than zero');
         }
@@ -35,15 +58,9 @@ class Validator implements ValidatorInterface
         return $value;
     }
 
-    public function validateInt(string $paramName, int $value): int
-    {
-        if ($value <= 0) {
-            throw new GeneralMaxpayException($paramName . 'must be greater than zero');
-        }
-
-        return $value;
-    }
-
+    /**
+     * @return string
+     */
     public function getDefaultEncoding(): string
     {
         return $this->encoding;

@@ -6,6 +6,10 @@ namespace Maxpay\Lib\Util;
 
 use Maxpay\Lib\Exception\EmptyArgumentException;
 
+/**
+ * Class SignatureHelper
+ * @package Maxpay\Lib\Util
+ */
 class SignatureHelper
 {
     /**
@@ -18,10 +22,10 @@ class SignatureHelper
      */
     public function generateForString(string $data, string $secret, bool $inLowercase = false): string
     {
-        if ('' === $data) {
+        if (empty($data)) {
             throw new EmptyArgumentException('Data argument cant be empty');
         }
-        if ('' === $secret) {
+        if (empty($secret)) {
             throw new EmptyArgumentException('Secret key cant be empty');
         }
 
@@ -45,7 +49,7 @@ class SignatureHelper
         } else {
             $this->checkRecursive($data);
         }
-        if ('' === $secret) {
+        if (empty($secret)) {
             throw new EmptyArgumentException('Secret key cant be empty');
         }
 
@@ -91,7 +95,7 @@ class SignatureHelper
      * @param string|null $prefix
      * @return string
      */
-    public function implodeRecursive(array $data, ?string $prefix = null): string
+    public function implodeRecursive(array $data, string $prefix = null): string
     {
         $out = "";
         ksort($data);

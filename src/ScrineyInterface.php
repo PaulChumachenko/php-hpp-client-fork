@@ -8,6 +8,10 @@ use Maxpay\Lib\Component\ButtonBuilder;
 use Maxpay\Lib\Component\RebillBuilder;
 use Maxpay\Lib\Exception\GeneralMaxpayException;
 
+/**
+ * Interface ScrineyInterface
+ * @package Maxpay
+ */
 interface ScrineyInterface
 {
     /**

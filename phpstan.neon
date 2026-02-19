@@ -1,8 +1,0 @@
-parameters:
-    level: 8
-    paths:
-        - src
-    bootstrapFiles:
-        - vendor/autoload.php
-    ignoreErrors:
-        - identifier: missingType.iterableValue

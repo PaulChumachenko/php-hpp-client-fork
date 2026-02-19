@@ -16,31 +16,51 @@ use Maxpay\Lib\Util\Validator;
 use Maxpay\Lib\Util\ValidatorInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class ButtonBuilder
+ * @package Maxpay\Lib\Component
+ */
 class ButtonBuilder extends BaseBuilder
 {
-    private ValidatorInterface $validator;
+    /** @var ValidatorInterface */
+    private $validator;
 
-    private IdentityInterface $identity;
+    /** @var IdentityInterface */
+    private $identity;
 
-    private LoggerInterface $logger;
+    /** @var LoggerInterface */
+    private $logger;
 
-    private string $userId;
+    /** @var string */
+    private $userId;
 
-    private bool $showButton = true;
+    /** @var bool */
+    private $showButton = true;
 
-    private string $buttonText = 'Pay';
+    /** @var string */
+    private $buttonText = 'Pay';
 
     /** @var ProductInterface[] */
-    private array $customProducts = [];
+    private $customProducts = [];
 
-    private string $baseHost;
+    /** @var string */
+    private $baseHost;
 
-    private ?string $successUrl = null;
+    /** @var string|null */
+    private $successUrl;
 
-    private ?string $declineUrl = null;
+    /** @var string|null */
+    private $declineUrl;
 
-    private ?string $backUrl = null;
+    /** @var string|null */
+    private $backUrl;
 
+    /**
+     * @param IdentityInterface $identity
+     * @param string $userId
+     * @param LoggerInterface $logger
+     * @param string $baseHost
+     */
     public function __construct(IdentityInterface $identity, string $userId, LoggerInterface $logger, string $baseHost)
     {
         parent::__construct($logger);
@@ -172,6 +192,7 @@ class ButtonBuilder extends BaseBuilder
     /**
      * Set custom product - products will be summarized and displayed on payment page
      *
+     * @param ProductInterface[] $products
      * @return ButtonBuilder
      * @throws GeneralMaxpayException
      */

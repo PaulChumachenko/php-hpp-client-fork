@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Maxpay\Lib\Exception;
 
 /**
- * Class EmptyArgumentException
+ * Class InvalidEncodingException
  * @package Maxpay\Lib\Exception
  */
-class EmptyArgumentException extends GeneralMaxpayException
+class InvalidEncodingException extends GeneralMaxpayException
 {
     /**
      * @param string $paramName
@@ -16,7 +16,7 @@ class EmptyArgumentException extends GeneralMaxpayException
     public function __construct(string $paramName)
     {
         parent::__construct(
-            sprintf('Passed argument `%s` is empty', $paramName)
+            sprintf('Passed argument `%s` has wrong encoding', $paramName)
         );
     }
 }

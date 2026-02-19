@@ -13,20 +13,40 @@ use Maxpay\Lib\Util\Validator;
 use Maxpay\Lib\Util\ValidatorInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class CancelPostTrialBuilder
+ * @package Maxpay\Lib\Component
+ */
 class CancelPostTrialBuilder extends BaseBuilder
 {
-    private IdentityInterface $identity;
+    /** @var IdentityInterface */
+    private $identity;
 
-    private string $action = 'api/cancel_post_trial';
+    /** @var string */
+    private $action = 'api/cancel_post_trial';
 
-    private string $transactionId;
+    /** @var string */
+    private $transactionId;
 
-    private ClientInterface $client;
+    /** @var ClientInterface */
+    private $client;
 
-    private ValidatorInterface $validator;
+    /** @var ValidatorInterface */
+    private $validator;
 
-    private SignatureHelper $signatureHelper;
+    /** @var string */
+    private $baseHost;
 
+    /** @var SignatureHelper */
+    private $signatureHelper;
+
+    /**
+     * @param IdentityInterface $identity
+     * @param string $transactionId
+     * @param LoggerInterface $logger
+     * @param string $baseHost
+     * @throws GeneralMaxpayException
+     */
     public function __construct(
         IdentityInterface $identity,
         string $transactionId,
@@ -38,9 +58,9 @@ class CancelPostTrialBuilder extends BaseBuilder
         $this->validator = new Validator();
         $this->identity = $identity;
         $this->transactionId = $this->validator->validateString('transactionId', $transactionId);
+        $this->baseHost = $this->validator->validateString('baseHost', $baseHost);
         $this->signatureHelper = new SignatureHelper();
 
-        $baseHost = $this->validator->validateString('baseHost', $baseHost);
         $this->client = new CurlClient($baseHost . $this->action, $logger);
         $logger->info('Cancel post trial builder successfully initialized');
     }
